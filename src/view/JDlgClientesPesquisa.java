@@ -8,7 +8,7 @@ package view;
 
 /**
  *
- * @author carlo
+ * @author MARCO
  */
 public class JDlgClientesPesquisa extends javax.swing.JDialog {
 
