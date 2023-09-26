@@ -5,21 +5,34 @@
  */
 package view;
 
+import bean.ClienteMabs;
+import dao.ClientesDAO;
+import java.util.List;
+
 
 /**
  *
  * @author MARCO
  */
 public class JDlgClientesPesquisa extends javax.swing.JDialog {
+    private JDlgClientes jDlgClientes;  
+    private ClientesControle clientesControle;
 
  
     public JDlgClientesPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-  
+        setLocationRelativeTo(null);
+        clientesControle = new ClientesControle();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = clientesDAO.listAll();
+        clientesControle.setList(lista);
+        jTable1.setModel(clientesControle);
+                setLocationRelativeTo(null);
     }
-
+     public void setTelaAnterior(JDlgClientes jDlgClientes){
+    this.jDlgClientes = jDlgClientes;
+     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -88,7 +101,10 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-    setVisible(false); 
+       int rowSel = jTable1.getSelectedRow();
+        ClienteMabs clienteMabs = clientesControle.getBean(rowSel);
+        jDlgClientes.beanView(clienteMabs);
+        setVisible(false); 
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

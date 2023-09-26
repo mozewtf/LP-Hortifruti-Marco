@@ -10,6 +10,10 @@ import dao.ProdutosDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 
@@ -18,22 +22,33 @@ import tools.Util;
  * @author MARCO
  */
 public class JDlgProdutoNovoIA extends javax.swing.JDialog {
-
-    /**
-     * Creates new form JDlgGuitarraIA
-     */
+     MaskFormatter mascaraValidade;
+   
+             
+             
+             
     public JDlgProdutoNovoIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Produtos");
+       try{  
+            mascaraValidade = new MaskFormatter("##/##/####");
+      } catch(ParseException ex) {
+          Logger.getLogger(JDlgProdutoNovoIA.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        jFmtValidade.setFormatterFactory(new DefaultFormatterFactory(mascaraValidade));
     }
+ 
+    
+
     public ProdutosMabs viewBean(){
     ProdutosMabs produtosMabs = new ProdutosMabs();
     produtosMabs.setIdProdutosMabs(Util.strInt(jTxtIdProduto.getText()));
+//produtosMabs.setIdProdutosMabs(Util.strInt(jTxtIdProduto.getText()));
     produtosMabs.setTipoMabs(jTxtTipo.getText());
     produtosMabs.setPesoMabs(jTxtPeso.getText());
-  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         try {
             produtosMabs.setValidadeMabs(formato.parse(jFmtValidade.getText()));
         } catch (ParseException ex) {
@@ -43,15 +58,15 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     produtosMabs.setConservantesMabs(jTxtConservantes.getText()); 
     return produtosMabs;
     }
-    public void beanView(ProdutosMabs produtosMabs){
+    /*public void beanView(ProdutosMabs produtosMabs){
     jTxtIdProduto.setText(Util.intStr(produtosMabs.getIdProdutosMabs()));
     jTxtTipo.setText(produtosMabs.getTipoMabs());
     jTxtPeso.setText(produtosMabs.getPesoMabs());
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        jFmtValidade.setText(formato.format(produtosMabs.getValidadeMabs()));
+    jFmtValidade.setText(formato.format(produtosMabs.getValidadeMabs()));
     jTxtNomeAlimentos.setText(produtosMabs.getNomealimentoMabs());
     jTxtConservantes.setText(produtosMabs.getConservantesMabs());
-    }
+    }\*
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +131,12 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
         jTxtConservantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtConservantesActionPerformed(evt);
+            }
+        });
+
+        jFmtValidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtValidadeActionPerformed(evt);
             }
         });
 
@@ -195,9 +216,9 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-           ProdutosMabs produtosMabs = viewBean();
+    ProdutosMabs produtosMabs = viewBean();
     ProdutosDAO produtosDAO = new ProdutosDAO();
-    produtosDAO.insert(produtosDAO);
+    produtosDAO.insert(produtosMabs);
     
     Util.limparCampos(jTxtIdProduto,jTxtTipo,jTxtPeso,jFmtValidade,jTxtNomeAlimentos, jTxtConservantes);
     Util.mensagem("incluido");
@@ -214,6 +235,10 @@ public class JDlgProdutoNovoIA extends javax.swing.JDialog {
     private void jTxtConservantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtConservantesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtConservantesActionPerformed
+
+    private void jFmtValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtValidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtValidadeActionPerformed
 
     /**
      * @param args the command line arguments

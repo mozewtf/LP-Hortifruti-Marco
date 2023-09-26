@@ -5,20 +5,72 @@
  */
 package view;
 
+import bean.FornecedorMabs;
+import dao.FornecedorDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+import tools.Util;
 /**
  *
- * @author MARCO
+ * @author MARCO    
  */
 public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
-
+    MaskFormatter mascaraCep;
     /**
-     * Creates new form JDlgFornecedor
+     * Creates new form JDlgVendedorIA
      */
     public JDlgFornecedorNovoIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         setTitle("Cadastro de Fornecedores");
-        setLocationRelativeTo(null);
+                setLocationRelativeTo(null);
+                try{  
+            mascaraCep = new MaskFormatter("#####-###");
+      } catch(ParseException ex) {
+          Logger.getLogger(JDlgProdutoNovoIA.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        jFmtCep.setFormatterFactory(new DefaultFormatterFactory(mascaraCep));
+ 
+    }
+    public FornecedorMabs viewBean(){
+    FornecedorMabs fornecedorMabs = new FornecedorMabs();
+    fornecedorMabs.setIdFornecedorMabs(Util.strInt(jTxtIdFornecedor.getText()));
+//   fornecedorNovoMabs.setUsuariosMabs(Util.strInt(jTxtCodUsuario.getText()));
+    if (jCboSexo.getSelectedIndex() == 0){
+    fornecedorMabs.setSexoMabs("M");
+    } else {
+    fornecedorMabs.setSexoMabs("F");}
+    fornecedorMabs.setTelefoneMabs(jFmtTelefone.getText());
+    fornecedorMabs.setRuaMabs(jTxtRua.getText());
+    fornecedorMabs.setNumerohomeMabs(jTxtNumeroHome.getText());
+    fornecedorMabs.setComplementoMabs(jTxtComplemento.getText());
+    fornecedorMabs.setEstadoMabs(jTxtEstado.getText());
+    fornecedorMabs.setNacionalidadeMabs(jTxtNacionalidade.getText());
+    fornecedorMabs.setCepMabs(jFmtCep.getText());
+    fornecedorMabs.setCidadeMabs(jTxtCidade.getText());
+    return fornecedorMabs;
+    }
+    
+    public void beanView(FornecedorMabs fornecedorMabs){
+    jTxtIdFornecedor.setText(Util.intStr(fornecedorMabs.getIdFornecedorMabs()));
+//    
+    if(fornecedorMabs.getSexoMabs()=="M"){
+    jCboSexo.setSelectedIndex(0);
+    }else{
+    jCboSexo.setSelectedIndex(1);}
+    fornecedorMabs.setTelefoneMabs(jFmtTelefone.getText());
+    fornecedorMabs.setRuaMabs(jTxtRua.getText());
+    fornecedorMabs.setNumerohomeMabs(jTxtNumeroHome.getText());
+    fornecedorMabs.setComplementoMabs(jTxtComplemento.getText());
+    fornecedorMabs.setEstadoMabs(jTxtEstado.getText());
+    fornecedorMabs.setNacionalidadeMabs(jTxtNacionalidade.getText());
+    fornecedorMabs.setCepMabs(jFmtCep.getText());
+    fornecedorMabs.setCidadeMabs(jTxtCidade.getText());
+    
     }
 
     /**
@@ -35,17 +87,15 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTxtTelefone = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jCboSexo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        JTxtNacionalidade = new javax.swing.JTextField();
+        jTxtNacionalidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        JTxtEstado = new javax.swing.JTextField();
+        jTxtEstado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTxtCidade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTxtCep = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jBtnOk1 = new javax.swing.JButton();
         jBTnCancelar1 = new javax.swing.JButton();
@@ -57,22 +107,24 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         jTxtNumeroHome = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTxtComplemento = new javax.swing.JTextField();
+        jFmtCep = new javax.swing.JFormattedTextField();
+        jFmtTelefone = new javax.swing.JFormattedTextField();
 
         jTextField2.setText("jTextField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTxtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtIdUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Id de usuário");
 
         jLabel2.setText("jLabel2");
 
         jLabel3.setText("Telefone");
-
-        jTxtTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtTelefoneActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Sexo");
 
@@ -85,17 +137,17 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
 
         jLabel5.setText("Nacionalidade");
 
-        JTxtNacionalidade.addActionListener(new java.awt.event.ActionListener() {
+        jTxtNacionalidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTxtNacionalidadeActionPerformed(evt);
+                jTxtNacionalidadeActionPerformed(evt);
             }
         });
 
         jLabel6.setText("Estado");
 
-        JTxtEstado.addActionListener(new java.awt.event.ActionListener() {
+        jTxtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTxtEstadoActionPerformed(evt);
+                jTxtEstadoActionPerformed(evt);
             }
         });
 
@@ -144,6 +196,12 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
             }
         });
 
+        jFmtCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,50 +209,63 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTxtNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(125, 125, 125))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTxtRua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel1))
+                            .addComponent(jTxtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jFmtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtNumeroHome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jTxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 54, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(125, 125, 125))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel6)
+                            .addComponent(jTxtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(jLabel8)
+                            .addComponent(jFmtCep))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(122, 122, 122)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTxtNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jTxtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(136, 136, 136)
-                                        .addComponent(jLabel10))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTxtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6)
-                                            .addComponent(JTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(36, 36, 36)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jTxtRua, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(jTxtNumeroHome)
-                                            .addComponent(jTxtComplemento))))
-                                .addGap(0, 78, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                    .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(179, 179, 179))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,49 +274,45 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtNumeroHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12))))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JTxtNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtIdUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFmtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel11)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtNumeroHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFmtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
@@ -253,24 +320,25 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtTelefoneActionPerformed
-
     private void jCboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboSexoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCboSexoActionPerformed
 
-    private void JTxtNacionalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTxtNacionalidadeActionPerformed
+    private void jTxtNacionalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNacionalidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTxtNacionalidadeActionPerformed
+    }//GEN-LAST:event_jTxtNacionalidadeActionPerformed
 
-    private void JTxtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTxtEstadoActionPerformed
+    private void jTxtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTxtEstadoActionPerformed
+    }//GEN-LAST:event_jTxtEstadoActionPerformed
 
     private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
-        setVisible(false);
+    FornecedorMabs fornecedorMabs = viewBean();
+    FornecedorDAO fornecedorDAO = new FornecedorDAO();
+    fornecedorDAO.insert(fornecedorMabs);
+    
+    Util.limparCampos(jTxtCidade,jTxtIdFornecedor,jTxtIdUsuario,jCboSexo,jTxtNacionalidade ,jTxtEstado,jFmtTelefone,jTxtCidade,jTxtRua,jTxtComplemento,jFmtCep, jTxtNumeroHome);
+    Util.mensagem("incluido");
     }//GEN-LAST:event_jBtnOk1ActionPerformed
 
     private void jBTnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTnCancelar1ActionPerformed
@@ -284,6 +352,14 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     private void jTxtComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtComplementoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtComplementoActionPerformed
+
+    private void jFmtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtCepActionPerformed
+
+    private void jTxtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtIdUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtIdUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,11 +405,11 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTxtEstado;
-    private javax.swing.JTextField JTxtNacionalidade;
     private javax.swing.JButton jBTnCancelar1;
     private javax.swing.JButton jBtnOk1;
     private javax.swing.JComboBox<String> jCboSexo;
+    private javax.swing.JFormattedTextField jFmtCep;
+    private javax.swing.JFormattedTextField jFmtTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -348,13 +424,13 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTxtCep;
     private javax.swing.JTextField jTxtCidade;
     private javax.swing.JTextField jTxtComplemento;
+    private javax.swing.JTextField jTxtEstado;
     private javax.swing.JTextField jTxtIdFornecedor;
     private javax.swing.JTextField jTxtIdUsuario;
+    private javax.swing.JTextField jTxtNacionalidade;
     private javax.swing.JTextField jTxtNumeroHome;
     private javax.swing.JTextField jTxtRua;
-    private javax.swing.JFormattedTextField jTxtTelefone;
     // End of variables declaration//GEN-END:variables
 }

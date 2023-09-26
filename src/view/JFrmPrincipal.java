@@ -13,14 +13,13 @@ public class JFrmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JFrmPrincipal
      */
-    JFrmLogin jFrmLogin; 
+  
     public JFrmPrincipal() {
         initComponents();
         setTitle("Compra e Venda Hortifruti");
 setExtendedState(MAXIMIZED_BOTH);
-     jFrmLogin = new JFrmLogin(null, true);   
+   
      
-
     }
 
     JFrmPrincipal(Object object, boolean b) {
@@ -146,7 +145,7 @@ setExtendedState(MAXIMIZED_BOTH);
     }//GEN-LAST:event_jMnuClienteActionPerformed
 
     private void jMnuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuUsuariosActionPerformed
-    JDlgUsuariosPesquisa Usuario = new JDlgUsuariosPesquisa(null, true);
+    JDlgUsuarios Usuario = new JDlgUsuarios(null, true);
     Usuario.setVisible(true);
     }//GEN-LAST:event_jMnuUsuariosActionPerformed
 

@@ -11,17 +11,19 @@ import javax.swing.JOptionPane;
  *
  * @author MARCO
  */
-public class JFrmLogin extends javax.swing.JDialog {
+
 
     /**
      * Creates new form JFrmLogin
      */
-    public JFrmLogin(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+    public class JFrmLogin extends javax.swing.JFrame {
+    String usuario = "marco";
+    String senha = "1234";
+    JFrmPrincipal JFrmPrincipal = new JFrmPrincipal();
+    public JFrmLogin() {
+               initComponents();
+        setLocationRelativeTo(null);
     }
-     
-    private int tentativas;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,28 +125,17 @@ public class JFrmLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_jPwfSenhaActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        String nome = "marco";
-        String senha = "1234";
-        if (jTxtUsuario.getText().equals(nome) && jPwfSenha.getText().equals(senha)) {
-            JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!");
-            tentativas = 0;
-        } else {
-            tentativas++;
-            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválidos! Tentativa " + tentativas + "/3");
-            if (tentativas >= 3) {
-                JOptionPane.showMessageDialog(null, "Limte de tentativas Excedido.");
-                System.exit(0);
-            }
-        }
+       if(jTxtUsuario.getText().equals(usuario) && jPwfSenha.getText().equals(senha)){
+        JFrmPrincipal.setVisible(true);       
+        }else{
+     System.out.println("login errado");
+}  
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -169,17 +160,10 @@ public class JFrmLogin extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFrmLogin dialog = new JFrmLogin(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new JFrmLogin().setVisible(true);
             }
         });
     }

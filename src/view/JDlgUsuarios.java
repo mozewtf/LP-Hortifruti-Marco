@@ -122,7 +122,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
         jLabel4.setText("Nickname");
 
-        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "" }));
         jCboNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCboNivelActionPerformed(evt);
@@ -145,7 +145,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
         jLabel5.setText("CPF");
 
-        jLabel2.setText("código");
+        jLabel2.setText("id de usuario");
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("excluir");
@@ -155,7 +155,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
             }
         });
 
-        jLabel8.setText("Nível");
+        jLabel8.setText("nivel de permiso");
 
         jFmtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,12 +266,12 @@ public class JDlgUsuarios extends javax.swing.JDialog {
                                     .addComponent(JFmtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(53, 53, 53)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jchbAtivo)
                                             .addComponent(jFmtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel6)
-                                        .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel8)))
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel7)
                                 .addComponent(jPwfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -285,7 +285,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
                     .addGap(10, 10, 10)
                     .addComponent(jLabel2)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel3)
                     .addGap(1, 1, 1)

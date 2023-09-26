@@ -10,26 +10,31 @@ import dao.ProdutosDAO;
 import java.util.List;
 import tools.Util;
 
-
-import tools.Util;
-
 /**
  *
  * @author MARCO
  */
 public class JDlgProdutoNovo extends javax.swing.JDialog {
-
     /**
      * Creates new form JDlgGuitarra
      */
     
     JDlgProdutoNovoIA jDlgProdutoIA;
+    ProdutosMabs produtosMabs;
+    ProdutosDAO produtosDAO;
+    ProdutoControle produtoControle;
     public JDlgProdutoNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Produto");
         jDlgProdutoIA = new JDlgProdutoNovoIA(null, true);
+        produtosDAO = new ProdutosDAO();
+        List lista = produtosDAO.listAll();
+        produtoControle = new ProdutoControle();
+        produtoControle.setList(lista);
+        jTable1.setModel(produtoControle);
+       
     }
 
     /**
@@ -66,6 +71,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
 
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +80,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
         });
         jPanel1.add(jBtnIncluir);
 
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +89,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
         });
         jPanel1.add(jBtnAlterar);
 
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +115,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -117,8 +125,7 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
        jDlgProdutoIA.setTitle("inclusão");
         jDlgProdutoIA.setVisible(true);
-
-        
+           
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -127,8 +134,17 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja excluir o usuario?")==true){
-        };
+      if(Util.perguntar("Deseja excluir o produto?")==true){
+        int sel = jTable1.getSelectedRow();
+        
+        ProdutosMabs produtosMabs = produtoControle.getBean(sel);
+        produtosDAO.delete(produtosMabs);
+        
+        List lista = produtosDAO.listAll();
+        produtoControle.setList(lista);
+         Util.mensagem("registro excluido");  
+        }else{
+        Util.mensagem("Exclusão Cancelada");}
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**

@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package view;
-
+import view.FornecedorControle;
+import bean.FornecedorMabs;
+import dao.FornecedorDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -16,15 +19,21 @@ public class JDlgFornecedorNovo extends javax.swing.JDialog {
     /**
      * Creates new form JDlgFornecedorNovo
      */
-    JDlgFornecedorNovoIA jDlgFornecedorNovoIA;
+     JDlgFornecedorNovoIA jDlgFornecedorNovoIA;
+     FornecedorMabs fornecedorMabs;
+     FornecedorDAO fornecedorDAO;
+     FornecedorControle fornecedorControle;
     public JDlgFornecedorNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();        
-        setTitle("Fornecedor Novo");
+        initComponents();
+        setTitle("Fornecedor");
         setLocationRelativeTo(null);
         jDlgFornecedorNovoIA = new JDlgFornecedorNovoIA(null, true);
-
-        
+        fornecedorDAO = new FornecedorDAO();
+        List lista = fornecedorDAO.listAll();
+        fornecedorControle = new FornecedorControle();
+        fornecedorControle.setList(lista);
+        jTable1.setModel(fornecedorControle);
     }
 
     /**

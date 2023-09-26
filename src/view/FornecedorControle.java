@@ -5,7 +5,7 @@
  */
 package view;
 
-import bean.ProdutosMabs;
+import bean.FornecedorMabs;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,16 +13,15 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author MARCO
  */
-public class FornecedorControle {
-    public class UsuariosControle  extends AbstractTableModel{
+public class FornecedorControle extends AbstractTableModel{
     
     List lista;
     
     public void setList(List lista){
     this.lista = lista;
     };
-    public ProdutosMabs getBean(int row){
-    return (ProdutosMabs)lista.get(row);
+    public FornecedorMabs getBean(int row){
+    return (FornecedorMabs)lista.get(row);
     }
     
     @Override
@@ -38,18 +37,18 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      ProdutosMabs usuariosMabs = (ProdutosMabs) lista.get(rowIndex);
+      FornecedorMabs fornecedorMabs = (FornecedorMabs) lista.get(rowIndex);
         if (columnIndex == 0){
-        return usuariosMabs.getIdProdutosMabs();
+        return fornecedorMabs.getIdFornecedorMabs();
         }
         if (columnIndex == 1){
-        return usuariosMabs.getTipoMabs();
+        return fornecedorMabs.getTelefoneMabs();
         }
         if (columnIndex == 2){
-        return usuariosMabs.getPesoMabs();
+        return fornecedorMabs.getSexoMabs();
         }
         if (columnIndex == 3){
-        return usuariosMabs.getConservantesMabs();
+        return fornecedorMabs.getNacionalidadeMabs();
         }
       return "";
     }
@@ -60,17 +59,15 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "Tipo";
+        return "Telefone";
         }
         if (column == 2){
-        return "Peso";
+        return "Sexo";
         }
         if (column == 3){
-        return "Conservante";
+        return "Nacionalidade";
         }
                
         return "";
     };
-    
-}
 }

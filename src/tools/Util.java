@@ -5,6 +5,8 @@
  */
 package tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -14,8 +16,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author MARCO
- * 
+ * @author MARCO    
  */
 public class Util {
         public static void habilitar(boolean valor, JComponent ... vetComp){
@@ -59,21 +60,23 @@ public class Util {
        return false;}      
     }
     public static int strInt(String cad){
-    return 0;
+      return Integer.parseInt(cad);
     }
     public static String intStr(int num){
-    return "";
+    return Integer.toString(num);
     }
     public static double strDouble(String cad){
-    return 0;
+        return Double.parseDouble(cad);
     }
     public static String doubleStr(double num){
-    return "";
+     return Double.toString(num);
     }
-    public static Date strDate(String cad){
-        return null;
+    public static Date strDate(String cad)throws ParseException{
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    return dateFormat.parse(cad);
     }
     public static String dateStr(Date data){
-    return "";
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    return dateFormat.format(data);
     }
 }

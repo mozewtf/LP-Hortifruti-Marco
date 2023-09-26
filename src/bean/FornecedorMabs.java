@@ -80,7 +80,7 @@ public class FornecedorMabs  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fkusuarios_mabs", nullable=false)
+    @JoinColumn(name="fkusuarios_mabs", nullable=false) 
     public UsuariosMabs getUsuariosMabs() {
         return this.usuariosMabs;
     }
