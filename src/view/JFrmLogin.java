@@ -4,24 +4,21 @@
  * and open the template in the editor.
  */
 package view;
-
+import bean.UsuariosMabs;
+import dao.UsuariosDAO;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author MARCO
  */
-
-
     /**
      * Creates new form JFrmLogin
      */
     public class JFrmLogin extends javax.swing.JFrame {
-    String usuario = "marco";
-    String senha = "1234";
     JFrmPrincipal JFrmPrincipal = new JFrmPrincipal();
     public JFrmLogin() {
-               initComponents();
+        initComponents();
         setLocationRelativeTo(null);
     }
 
@@ -125,11 +122,23 @@ import javax.swing.JOptionPane;
     }//GEN-LAST:event_jPwfSenhaActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-       if(jTxtUsuario.getText().equals(usuario) && jPwfSenha.getText().equals(senha)){
+      /* if(jTxtUsuario.getText().equals(usuario) && jPwfSenha.getText().equals(senha)){
         JFrmPrincipal.setVisible(true);       
         }else{
      System.out.println("login errado");
-}  
+}  */
+      String usuario = jTxtUsuario.getText();
+      String senha = jPwfSenha.getText();
+
+UsuariosDAO DAO = new UsuariosDAO();
+UsuariosMabs usuarioLogado = DAO.login(usuario, senha);
+
+if (usuarioLogado != null) {
+    JFrmPrincipal JFrmPrincipal = new JFrmPrincipal();
+    JFrmPrincipal.setVisible(true);
+} else {
+    System.out.println("Login nao encontrado");
+}
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

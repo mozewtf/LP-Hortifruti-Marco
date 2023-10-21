@@ -20,6 +20,7 @@ import javax.swing.table.AbstractTableModel;
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
     public ProdutosMabs getBean(int row){
     return (ProdutosMabs)lista.get(row);

@@ -15,10 +15,8 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author MARCO
  */
-public class FornecedorDAO extends DAO_Abstract  {
+public class FornecedorDAO extends DAO_Abstract{
 
- 
- 
     @Override
     public void insert(Object object) {
     session.beginTransaction();
@@ -50,7 +48,7 @@ public class FornecedorDAO extends DAO_Abstract  {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(FornecedorMabs.class);
-        criteria.add(Restrictions.eq("id", id));
+        criteria.add(Restrictions.eq("idFornecedormabs", id));
         List lista = criteria.list();
         session.getTransaction().commit();
         return(ArrayList) lista;

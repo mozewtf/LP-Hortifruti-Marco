@@ -95,7 +95,7 @@ public class ClienteMabs  implements java.io.Serializable {
     }
 
     
-    @Column(name="cpf_mabs", nullable=false, length=11)
+    @Column(name="cpf_mabs", nullable=false, length=15)
     public String getCpfMabs() {
         return this.cpfMabs;
     }
@@ -135,7 +135,7 @@ public class ClienteMabs  implements java.io.Serializable {
     }
 
     
-    @Column(name="rg_mabs", nullable=false, length=13)
+    @Column(name="rg_mabs", nullable=false, length=15)
     public String getRgMabs() {
         return this.rgMabs;
     }
@@ -145,7 +145,7 @@ public class ClienteMabs  implements java.io.Serializable {
     }
 
     
-    @Column(name="cep_mabs", nullable=false, length=8)
+    @Column(name="cep_mabs", nullable=false, length=15)
     public String getCepMabs() {
         return this.cepMabs;
     }
@@ -195,7 +195,7 @@ public class ClienteMabs  implements java.io.Serializable {
     }
 
     
-    @Column(name="telefone_mabs", nullable=false, length=18)
+    @Column(name="telefone_mabs", nullable=false, length=25)
     public String getTelefoneMabs() {
         return this.telefoneMabs;
     }

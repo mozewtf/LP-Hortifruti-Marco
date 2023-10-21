@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package view;
-
+import bean.UsuariosMabs;
 import bean.FornecedorMabs;
-import dao.FornecedorDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -15,12 +14,14 @@ import java.util.logging.Logger;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
+import dao.FornecedorDAO;
 /**
  *
  * @author MARCO    
  */
 public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     MaskFormatter mascaraCep;
+    
     /**
      * Creates new form JDlgVendedorIA
      */
@@ -39,7 +40,9 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     public FornecedorMabs viewBean(){
     FornecedorMabs fornecedorMabs = new FornecedorMabs();
     fornecedorMabs.setIdFornecedorMabs(Util.strInt(jTxtIdFornecedor.getText()));
-//   fornecedorNovoMabs.setUsuariosMabs(Util.strInt(jTxtCodUsuario.getText()));
+    UsuariosMabs usuariosMabs = new UsuariosMabs();
+    fornecedorMabs.setUsuariosMabs(Util.strInt(jTxtIdUsuario.getText()));
+    fornecedorMabs.setUsuariosMabs(usuariosMabs);
     if (jCboSexo.getSelectedIndex() == 0){
     fornecedorMabs.setSexoMabs("M");
     } else {
@@ -333,12 +336,9 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtEstadoActionPerformed
 
     private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
-    FornecedorMabs fornecedorMabs = viewBean();
-    FornecedorDAO fornecedorDAO = new FornecedorDAO();
-    fornecedorDAO.insert(fornecedorMabs);
-    
-    Util.limparCampos(jTxtCidade,jTxtIdFornecedor,jTxtIdUsuario,jCboSexo,jTxtNacionalidade ,jTxtEstado,jFmtTelefone,jTxtCidade,jTxtRua,jTxtComplemento,jFmtCep, jTxtNumeroHome);
-    Util.mensagem("incluido");
+   FornecedorMabs fornecedorMabs  = viewBean();
+   FornecedorDAO.insert(fornecedorMabs);
+        setVisible(false);
     }//GEN-LAST:event_jBtnOk1ActionPerformed
 
     private void jBTnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTnCancelar1ActionPerformed

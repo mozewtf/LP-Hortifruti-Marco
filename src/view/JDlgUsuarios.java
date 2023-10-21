@@ -412,8 +412,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         jDlgUsuariosPesquisa.setVisible(true);
         Util.habilitar(true,  jBtnAlterar, jBtnPesquisar, jBtnCancelar,jBtnExcluir);
         Util.habilitar(false, jBtnIncluir, jBtnConfirmar);
-        
-
+        //Util.habilitar(true, jBtnAlterar, jBtnPesquisar,jBtnIncluir);
+        //Util.habilitar(false, jBtnExcluir, jBtnConfirmar,jBtnCancelar);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed

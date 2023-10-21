@@ -132,8 +132,16 @@ public class JDlgFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja excluir o fornecedor?")==true){
-        };
+      if(Util.perguntar("Deseja excluir o usuario?")==true){
+     Util.mensagem("exclusaão concluída");
+       int sel = jTable1.getSelectedRow();
+             FornecedorMabs fornecedorMabs = fornecedorControle.getBean(sel);
+             fornecedorDAO.delete(fornecedorMabs);
+            List lista = fornecedorDAO.listAll();
+           fornecedorControle.setList(lista);
+        }else{
+  Util.mensagem("exlusão cancelada");
+    }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**
