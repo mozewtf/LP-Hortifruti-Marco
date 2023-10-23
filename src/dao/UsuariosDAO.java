@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+
+
 /**
  *
  * @author MARCO
@@ -63,6 +65,35 @@ public class UsuariosDAO extends DAO_Abstract  {
         session.getTransaction().commit();
         return(ArrayList) lista;
     }
+    
+    public List listNome(String nome){
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(UsuariosMabs.class);
+    criteria.add(Restrictions.like("NomeMabs", "%" + nome + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+    }
+    
+    public List listCpf(String cpf){
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(UsuariosMabs.class);
+    criteria.add(Restrictions.like("CpfMabs", "%" + cpf + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+    }
+    
+    public List listNomeCpf(String cpf, String nome){
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(UsuariosMabs.class);
+    criteria.add(Restrictions.like("CpfMabs", "%" + cpf + "%"));
+    criteria.add(Restrictions.like("NomeMabs", "%" + nome + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+    }
+
 
      public UsuariosMabs login(String usuario, String senha) {
     session.beginTransaction();
