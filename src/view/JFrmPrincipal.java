@@ -5,7 +5,9 @@
  */
 package view;
 
+import query.JDlgConsultasClientes;
 import query.JDlgConsultasUsuarios;
+import view.JDlgFornecedorNovo;
 /**
  *
  * @author MARCO
@@ -36,6 +38,11 @@ setExtendedState(MAXIMIZED_BOTH);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        jBtnCliente = new javax.swing.JButton();
+        jBtnFornecedor = new javax.swing.JButton();
+        jBtnUsuario = new javax.swing.JButton();
+        jBtnProdutos = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMnuPrincipal = new javax.swing.JMenu();
         jMnuUsuarios = new javax.swing.JMenuItem();
@@ -54,6 +61,55 @@ setExtendedState(MAXIMIZED_BOTH);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(240, 240, 240));
         getContentPane().setLayout(null);
+
+        jToolBar1.setRollover(true);
+
+        jBtnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cliente_1.png"))); // NOI18N
+        jBtnCliente.setFocusable(false);
+        jBtnCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnClienteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnCliente);
+
+        jBtnFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fornecedor32.png"))); // NOI18N
+        jBtnFornecedor.setFocusable(false);
+        jBtnFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnFornecedorActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnFornecedor);
+
+        jBtnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jBtnUsuario.setFocusable(false);
+        jBtnUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnUsuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnUsuarioActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnUsuario);
+
+        jBtnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produto.png"))); // NOI18N
+        jBtnProdutos.setFocusable(false);
+        jBtnProdutos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnProdutos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnProdutosActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnProdutos);
+
+        getContentPane().add(jToolBar1);
+        jToolBar1.setBounds(0, 0, 530, 40);
 
         jMnuPrincipal.setMnemonic('P');
         jMnuPrincipal.setText("Principal");
@@ -206,6 +262,26 @@ setExtendedState(MAXIMIZED_BOTH);
         consulta.setVisible(true);
     }//GEN-LAST:event_jMnuConsulta1ActionPerformed
 
+    private void jBtnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnClienteActionPerformed
+    JDlgConsultasClientes consultaClientes = new JDlgConsultasClientes(null,true);
+    consultaClientes.setVisible(true);
+    }//GEN-LAST:event_jBtnClienteActionPerformed
+
+    private void jBtnFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFornecedorActionPerformed
+    JDlgFornecedorNovo Fornecedor = new JDlgFornecedorNovo(null, true);
+    Fornecedor.setVisible(true);
+    }//GEN-LAST:event_jBtnFornecedorActionPerformed
+
+    private void jBtnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUsuarioActionPerformed
+     JDlgConsultasUsuarios consultaUsuario = new JDlgConsultasUsuarios(null,true);
+   consultaUsuario.setVisible(true);
+    }//GEN-LAST:event_jBtnUsuarioActionPerformed
+
+    private void jBtnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnProdutosActionPerformed
+     JDlgProdutoNovo produto = new JDlgProdutoNovo(null, true);
+    produto.setVisible(true);
+    }//GEN-LAST:event_jBtnProdutosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +319,10 @@ setExtendedState(MAXIMIZED_BOTH);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCliente;
+    private javax.swing.JButton jBtnFornecedor;
+    private javax.swing.JButton jBtnProdutos;
+    private javax.swing.JButton jBtnUsuario;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMnuCliente;
     private javax.swing.JMenuItem jMnuCompras;
@@ -256,5 +336,6 @@ setExtendedState(MAXIMIZED_BOTH);
     private javax.swing.JMenuItem jMnuSair;
     private javax.swing.JMenuItem jMnuUsuarios;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
