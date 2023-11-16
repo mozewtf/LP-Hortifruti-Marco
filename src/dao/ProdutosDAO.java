@@ -64,4 +64,31 @@ public class ProdutosDAO extends DAO_Abstract  {
         return(ArrayList) lista;
     }
     
+    public List listTipo(String tipo){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutosMabs.class);
+        criteria.add(Restrictions.like("tipoMabs", "%"+  tipo +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+//            jTxtId.setText(Util.intStr(clientesCwmo.getIdClienteCwmo()));
+    public List listConservantes(int conservantes){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutosMabs.class);
+        criteria.add(Restrictions.eq("conservantesMabs", conservantes));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        public List listTipoConservantes(String tipo, int conservantes) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ProdutosMabs.class);
+        criteria.add(Restrictions.like("tipoMabs", "%"+  tipo +"%"));
+        criteria.add(Restrictions.eq("conservantesMabs",  conservantes));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }
+    
 }

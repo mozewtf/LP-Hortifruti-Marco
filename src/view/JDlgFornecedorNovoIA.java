@@ -15,12 +15,14 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
 import dao.FornecedorDAO;
+
 /**
  *
  * @author MARCO    
  */
 public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     MaskFormatter mascaraCep;
+    private boolean incluindo;
     
     /**
      * Creates new form JDlgVendedorIA
@@ -40,9 +42,14 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     public FornecedorMabs viewBean(){
     FornecedorMabs fornecedorMabs = new FornecedorMabs();
     fornecedorMabs.setIdFornecedorMabs(Util.strInt(jTxtIdFornecedor.getText()));
+    //UsuariosMabs usuariosMabs = new UsuariosMabs();
+    //fornecedorMabs.setUsuariosMabs(Util.strInt(jTxtIdUsuario.getText()));
+    //fornecedorMabs.setUsuariosMabs(usuariosMabs);
+    
     UsuariosMabs usuariosMabs = new UsuariosMabs();
-    fornecedorMabs.setUsuariosMabs(Util.strInt(jTxtIdUsuario.getText()));
+    usuariosMabs.setIdUsuariosMabs(Util.strInt(jTxtIdUsuario.getText()));
     fornecedorMabs.setUsuariosMabs(usuariosMabs);
+    
     if (jCboSexo.getSelectedIndex() == 0){
     fornecedorMabs.setSexoMabs("M");
     } else {
@@ -60,7 +67,8 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     
     public void beanView(FornecedorMabs fornecedorMabs){
     jTxtIdFornecedor.setText(Util.intStr(fornecedorMabs.getIdFornecedorMabs()));
-//    
+    UsuariosMabs usuariosMabs = fornecedorMabs.getUsuariosMabs();
+    jTxtIdUsuario.setText(String.valueOf(usuariosMabs.getIdUsuariosMabs()));
     if(fornecedorMabs.getSexoMabs()=="M"){
     jCboSexo.setSelectedIndex(0);
     }else{
@@ -100,8 +108,8 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         jTxtCidade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jBtnOk1 = new javax.swing.JButton();
-        jBTnCancelar1 = new javax.swing.JButton();
+        jBtnOk = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTxtIdFornecedor = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -161,23 +169,23 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jBtnOk1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmar.png"))); // NOI18N
-        jBtnOk1.setText("OK");
-        jBtnOk1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmar.png"))); // NOI18N
+        jBtnOk.setText("OK");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnOk1ActionPerformed(evt);
+                jBtnOkActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnOk1);
+        jPanel1.add(jBtnOk);
 
-        jBTnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
-        jBTnCancelar1.setText("Cancelar");
-        jBTnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTnCancelar1ActionPerformed(evt);
+                jBtnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBTnCancelar1);
+        jPanel1.add(jBtnCancelar);
 
         jLabel9.setText("Id de Fornecedor");
 
@@ -273,7 +281,7 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel1)
@@ -281,23 +289,23 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtIdUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jFmtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtIdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFmtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtIdUsuario))
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtNumeroHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTxtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTxtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtNumeroHome, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
@@ -335,15 +343,20 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtEstadoActionPerformed
 
-    private void jBtnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOk1ActionPerformed
-   FornecedorMabs fornecedorMabs  = viewBean();
-   FornecedorDAO.insert(fornecedorMabs);
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        
+        FornecedorMabs fornecedorMabs = viewBean();
+        FornecedorDAO fornecedorDAO = new FornecedorDAO();
+        fornecedorDAO.insert(fornecedorMabs);
+        Util.limparCampos(jTxtIdFornecedor, jTxtIdUsuario, jFmtTelefone, jTxtRua, jTxtNumeroHome, jTxtComplemento, jTxtEstado, jTxtNacionalidade, jTxtCidade, jFmtCep, jCboSexo);
+        Util.mensagem("incluido");
         setVisible(false);
-    }//GEN-LAST:event_jBtnOk1ActionPerformed
+        
+    }//GEN-LAST:event_jBtnOkActionPerformed
 
-    private void jBTnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTnCancelar1ActionPerformed
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jBTnCancelar1ActionPerformed
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jTxtRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtRuaActionPerformed
         // TODO add your handling code here:
@@ -405,8 +418,8 @@ public class JDlgFornecedorNovoIA extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBTnCancelar1;
-    private javax.swing.JButton jBtnOk1;
+    private javax.swing.JButton jBtnCancelar;
+    private javax.swing.JButton jBtnOk;
     private javax.swing.JComboBox<String> jCboSexo;
     private javax.swing.JFormattedTextField jFmtCep;
     private javax.swing.JFormattedTextField jFmtTelefone;

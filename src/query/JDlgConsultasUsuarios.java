@@ -23,11 +23,12 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        usuariosControle = new UsuariosControle();
+        setTitle("Consulta Usuarios");
         usuariosDAO = new UsuariosDAO();
-        List lista = usuariosDAO.listAll();
-        usuariosControle.setList(lista);
-        jTable1.setModel(usuariosControle);
+       List lista = usuariosDAO.listAll();
+       usuariosControle = new UsuariosControle();
+       usuariosControle.setList(lista);
+      jTable1.setModel(usuariosControle);
     }
 
     /**
@@ -51,6 +52,7 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
+        jBtnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnConsultar.setText("Consultar");
         jBtnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,25 +115,26 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
         // TODO add your handling code here:
-    if(jTxtNome.getText().equals("")&& jTxtCpf.getText().equals("")){ 
-    List lista = usuariosDAO.listAll();
-    usuariosControle.setList(lista);
-    } else { 
-        if(! jTxtNome.getText().equals("")&& jTxtCpf.getText().equals("")){ 
-            List lista = usuariosDAO.listNomeCpf(jTxtNome.getText(), jTxtCpf.getText());
+    if (jTxtNome.getText().equals("") && jTxtCpf.getText().equals("")) {
+            List lista = usuariosDAO.listAll();
             usuariosControle.setList(lista);
-        }else{
-    if(! jTxtNome.getText().equals("")){
-    List lista = usuariosDAO.listNome(jTxtNome.getText());
-    usuariosControle.setList(lista);
-        }else{  
-        if (! jTxtCpf.getText().equals("")){
-        List lista = usuariosDAO.listCpf(jTxtCpf.getText());
-        usuariosControle.setList(lista);      
-    }
-    }
+        } else {
+            if (!jTxtNome.getText().equals("") && !jTxtCpf.getText().equals("")) {
+                List lista = usuariosDAO.listNomeCpf(jTxtNome.getText(), jTxtCpf.getText());
+                usuariosControle.setList(lista);
+            } else {
+                if (!jTxtNome.getText().equals("")) {
+                    List lista = usuariosDAO.listNome(jTxtNome.getText());
+                    usuariosControle.setList(lista);
+                } else {
+                    if (!jTxtCpf.getText().equals("")) {
+                        List lista = usuariosDAO.listCpf(jTxtCpf.getText());
+                        usuariosControle.setList(lista);
+                    }
+                }
+            }
         }
-    }
+        
     }//GEN-LAST:event_jBtnConsultarActionPerformed
 
     /**

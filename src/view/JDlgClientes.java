@@ -63,7 +63,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     clienteMabs.setIdClienteMabs(Util.strInt(jTxtIdCliente.getText()));
     UsuariosMabs usuariosMabs = new UsuariosMabs();
     usuariosMabs.setIdUsuariosMabs(Util.strInt(jTxtIdUsuario.getText()));
-    clienteMabs.setUsuariosMabs(usuariosMabs); 
+    clienteMabs.setUsuariosMabs(usuariosMabs);
     clienteMabs.setNomeMabs(jTxtNome.getText());
     clienteMabs.setTelefoneMabs(jFmtTelefone.getText());
     clienteMabs.setRgMabs(jFmtRg.getText());
@@ -92,7 +92,10 @@ public class JDlgClientes extends javax.swing.JDialog {
     
     public void beanView(ClienteMabs clienteMabs){
     jTxtIdCliente.setText(Util.intStr(clienteMabs.getIdClienteMabs()));
-    jTxtIdUsuario.setText(Util.intStr(clienteMabs.getUsuariosMabs()));
+    //UsuariosMabs usuariosMabs = clienteMabs.getUsuariosMabs();
+    //jTxtIdUsuario.setText(String.valueOf(usuariosMabs.getIdUsuariosMabs()));
+    UsuariosMabs usuariosMabs = clienteMabs.getUsuariosMabs();
+    jTxtIdUsuario.setText(String.valueOf(usuariosMabs.getIdUsuariosMabs()));
     jTxtNome.setText(clienteMabs.getNomeMabs());
     jFmtTelefone.setText(clienteMabs.getTelefoneMabs());
     jFmtRg.setText(clienteMabs.getRgMabs());
@@ -102,7 +105,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     jCboSexo.setSelectedIndex(1);};
     jTxtNacionalidade.setText(clienteMabs.getNacionalidadeMabs());
     jTxtEstado.setText(clienteMabs.getEstadoMabs());
-    jTxtEmail.setText(clienteMabs.getCpfMabs());
+    jTxtEmail.setText(clienteMabs.getEmailMabs());
     jFmtCep.setText(clienteMabs.getCepMabs());
     jTxtNumerocasa.setText(clienteMabs.getNumerocasaMabs());
     jTxtComplemento.setText(clienteMabs.getComplementoMabs());
@@ -528,6 +531,9 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         //Util.habilitar(false, jFmtCPF,jTxtRua,jTxtComplemento, jTxtIdUsuario ,jTxtIdCliente, jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa, jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jBtnExcluir, jBtnConfirmar, jBtnCancelar, jTxtEstado);
         //Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        ClienteMabs clienteMabs = viewBean();
+        ClientesDAO clientesDAO = new ClientesDAO();
+
         if(incluindo==true){
         clientesDAO.insert(clienteMabs);
         }else{

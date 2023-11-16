@@ -61,6 +61,32 @@ public class FornecedorDAO extends DAO_Abstract{
         List lista = criteria.list();
         session.getTransaction().commit();
         return(ArrayList) lista;
-    }
-    
 }
+       public List listTelefone(String tel) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FornecedorMabs.class);
+        criteria.add(Restrictions.like("telefoneMabs", "%"+  tel +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+ 
+       public List listCidade(String city) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FornecedorMabs.class);
+        criteria.add(Restrictions.like("cidadeMabs", "%"+  city +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+        public List listTelefoneCidade(String tel, String city) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(FornecedorMabs.class);
+        criteria.add(Restrictions.like("telefoneMabs", "%"+  tel +"%"));
+        criteria.add(Restrictions.like("cidadeMabs", "%"+  city +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }
+    }
+

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
-
-
 /**
  *
  * @author MARCO
@@ -57,7 +55,7 @@ public class UsuariosDAO extends DAO_Abstract  {
         return(ArrayList) lista;
     }
 
-    @Override
+     @Override
     public List listAll() {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(UsuariosMabs.class);
@@ -104,6 +102,7 @@ public class UsuariosDAO extends DAO_Abstract  {
     session.getTransaction().commit();
     return usuarioLogado;
 }
+    
     
 }
 

@@ -18,6 +18,7 @@ public class ClientesControle extends AbstractTableModel {
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
     public ClienteMabs getBean(int row){
     return (ClienteMabs)lista.get(row);
@@ -41,8 +42,8 @@ return 4;
         if (columnIndex == 0){
         return clienteMabs.getIdClienteMabs();
         }
-        if (columnIndex == 1){
-        return clienteMabs.getUsuariosMabs();
+        if (columnIndex == 1 && clienteMabs.getUsuariosMabs() != null){
+        return clienteMabs.getUsuariosMabs().getIdUsuariosMabs();        
         }
         if (columnIndex == 2){
         return clienteMabs.getTelefoneMabs();
@@ -58,6 +59,7 @@ return 4;
         if (column == 0){
         return "ID cliente";
         }
+        
         if (column == 1){
         return "FK usuario";
         }
@@ -65,7 +67,7 @@ return 4;
         return "telefone";
         }
         if (column == 3){
-        return "email";
+        return "estado";
         }
                
         return "";

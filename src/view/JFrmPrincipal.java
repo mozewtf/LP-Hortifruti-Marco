@@ -5,6 +5,7 @@
  */
 package view;
 
+import query.JDlgConsultasUsuarios;
 /**
  *
  * @author MARCO
@@ -46,6 +47,8 @@ setExtendedState(MAXIMIZED_BOTH);
         jMnuMovimento = new javax.swing.JMenu();
         jMnuCompras = new javax.swing.JMenuItem();
         jMnuComprasProdutos = new javax.swing.JMenuItem();
+        jMnuMovimento1 = new javax.swing.JMenu();
+        jMnuConsulta1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -134,6 +137,21 @@ setExtendedState(MAXIMIZED_BOTH);
 
         jMenuBar2.add(jMnuMovimento);
 
+        jMnuMovimento1.setMnemonic('M');
+        jMnuMovimento1.setText("Consultas");
+
+        jMnuConsulta1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuConsulta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
+        jMnuConsulta1.setText("Consulta cliente");
+        jMnuConsulta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsulta1ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento1.add(jMnuConsulta1);
+
+        jMenuBar2.add(jMnuMovimento1);
+
         setJMenuBar(jMenuBar2);
 
         pack();
@@ -183,6 +201,11 @@ setExtendedState(MAXIMIZED_BOTH);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMnuComprasProdutosActionPerformed
 
+    private void jMnuConsulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsulta1ActionPerformed
+        JDlgConsultasUsuarios consulta = new JDlgConsultasUsuarios(null, true);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_jMnuConsulta1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,8 +247,10 @@ setExtendedState(MAXIMIZED_BOTH);
     private javax.swing.JMenuItem jMnuCliente;
     private javax.swing.JMenuItem jMnuCompras;
     private javax.swing.JMenuItem jMnuComprasProdutos;
+    private javax.swing.JMenuItem jMnuConsulta1;
     private javax.swing.JMenuItem jMnuFornecedor;
     private javax.swing.JMenu jMnuMovimento;
+    private javax.swing.JMenu jMnuMovimento1;
     private javax.swing.JMenu jMnuPrincipal;
     private javax.swing.JMenuItem jMnuProduto;
     private javax.swing.JMenuItem jMnuSair;

@@ -19,6 +19,7 @@ public class FornecedorControle extends AbstractTableModel{
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
     public FornecedorMabs getBean(int row){
     return (FornecedorMabs)lista.get(row);

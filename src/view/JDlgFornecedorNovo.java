@@ -124,6 +124,9 @@ public class JDlgFornecedorNovo extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         jDlgFornecedorNovoIA.setTitle("inclusão");
         jDlgFornecedorNovoIA.setVisible(true);
+        List lista = fornecedorDAO.listAll();
+        fornecedorControle.setList(lista); 
+    
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
