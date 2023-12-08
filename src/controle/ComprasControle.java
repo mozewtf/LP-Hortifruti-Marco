@@ -3,32 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controle;
 
-import bean.UsuariosMabs;
+
+import bean.ComprasMabs;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author MARCO
+ * @author marco
  */
-public class UsuariosControle  extends AbstractTableModel{
-    
-    List lista;
+public class ComprasControle extends AbstractTableModel{
+      List lista;
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
-    public UsuariosMabs getBean(int row){
-    return (UsuariosMabs)lista.get(row);
+    public ComprasMabs getBean(int row){
+    return (ComprasMabs)lista.get(row);
     }
     
     @Override
     public int getRowCount() {
        return lista.size();
     }
-
+  
     @Override
     public int getColumnCount() {
 return 4;
@@ -37,18 +38,19 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      UsuariosMabs usuariosMabs = (UsuariosMabs) lista.get(rowIndex);
+      ComprasMabs comprasMabs = (ComprasMabs) lista.get(rowIndex);
         if (columnIndex == 0){
-        return usuariosMabs.getIdUsuariosMabs();
+        return comprasMabs.getIdComprasMabs();
         }
-        if (columnIndex == 1){
-        return usuariosMabs.getNomeMabs();
+        if (columnIndex == 1 && comprasMabs.getFornecedorMabs() != null){
+        return comprasMabs.getFornecedorMabs().getIdFornecedorMabs();
         }
+
         if (columnIndex == 2){
-        return usuariosMabs.getNicknameMabs();
+        return comprasMabs.getQuantidadeMabs();
         }
         if (columnIndex == 3){
-        return usuariosMabs.getCpfMabs();
+        return comprasMabs.getTotalMabs();
         }
       return "";
     }
@@ -56,16 +58,16 @@ return 4;
     @Override
     public String getColumnName(int column){
         if (column == 0){
-        return "id";
+        return "Numero da Compras";
         }
         if (column == 1){
-        return "nome";
+        return "Cliente";
         }
         if (column == 2){
-        return "nickname";
+        return "Quantidade";
         }
         if (column == 3){
-        return "cpf";
+        return "Total";
         }
                
         return "";

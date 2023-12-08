@@ -63,6 +63,32 @@ public class ComprasDAO extends DAO_Abstract  {
         List lista = criteria.list();
         session.getTransaction().commit();
         return(ArrayList) lista;
-    }
-    
+}
+       public List listQuantidade(String quanti) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ComprasMabs.class);
+        criteria.add(Restrictions.like("quantidadeMabs", "%"+  quanti +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+ 
+       public List listTotal(Double total) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ComprasMabs.class);
+        criteria.add(Restrictions.like("totalMabs", "%"+  total +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+        public List listQuantidadeTotal(String quanti, Double total) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ComprasMabs.class);
+        criteria.add(Restrictions.like("quantidadeMabs", "%"+  quanti +"%"));
+        criteria.add(Restrictions.like("totalMabs", "%"+  total +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }    
+
 }

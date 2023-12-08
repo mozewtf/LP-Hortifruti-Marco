@@ -6,7 +6,7 @@
 package query;
 import dao.UsuariosDAO;
 import java.util.List;
-import view.UsuariosControle;
+import controle.UsuariosControle;
 
 /**
  *

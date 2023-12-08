@@ -5,6 +5,7 @@
  */
 package view;
 
+import controle.UsuariosControle;
 import bean.UsuariosMabs;
 import dao.UsuariosDAO;
 import java.util.List;

@@ -5,6 +5,7 @@
  */
 package dao;
 
+import bean.ComprasMabs;
 import bean.ComprasProdutoMabs;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,15 @@ public class ComprasProdutoDAO extends DAO_Abstract  {
         List lista = criteria.list();
         session.getTransaction().commit();
         return(ArrayList) lista;
+    }
+    
+     public List listProduct(ComprasMabs comprasMabs){
+       session.beginTransaction();
+        Criteria criteria = session.createCriteria(ComprasProdutoMabs.class);
+        criteria.add( Restrictions.eq("comprasMabs", comprasMabs));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
     
 }

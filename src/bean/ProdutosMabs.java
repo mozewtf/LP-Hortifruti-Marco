@@ -30,26 +30,29 @@ public class ProdutosMabs  implements java.io.Serializable {
      private String conservantesMabs;
      private String nomealimentoMabs;
      private Date validadeMabs;
+     private Double valorunitarioMabs;
      
     public ProdutosMabs() {
     }
 
 	
-    public ProdutosMabs(int idProdutosMabs, String tipoMabs, String pesoMabs, String conservantesMabs, String nomealimentoMabs, Date validadeMabs) {
+    public ProdutosMabs(int idProdutosMabs, String tipoMabs, String pesoMabs, String conservantesMabs, String nomealimentoMabs, Date validadeMabs, Double valorunitarioMabs) {
         this.idProdutosMabs = idProdutosMabs;
         this.tipoMabs = tipoMabs;
         this.pesoMabs = pesoMabs;
         this.conservantesMabs = conservantesMabs;
         this.nomealimentoMabs = nomealimentoMabs;
         this.validadeMabs = validadeMabs;
+        this.valorunitarioMabs = valorunitarioMabs;
     }
-    public ProdutosMabs(int idProdutosMabs, String tipoMabs, String pesoMabs, String conservantesMabs, String nomealimentoMabs, Date validadeMabs, Set comprasProdutoMabses, Set comprasMabses) {
+    public ProdutosMabs(int idProdutosMabs, String tipoMabs, String pesoMabs, String conservantesMabs, String nomealimentoMabs, Date validadeMabs, Set comprasProdutoMabses, Set comprasMabses, Double valorunitarioMabs) {
        this.idProdutosMabs = idProdutosMabs;
        this.tipoMabs = tipoMabs;
        this.pesoMabs = pesoMabs;
        this.conservantesMabs = conservantesMabs;
        this.nomealimentoMabs = nomealimentoMabs;
        this.validadeMabs = validadeMabs;
+       this.valorunitarioMabs = valorunitarioMabs;
      
     }
    
@@ -115,8 +118,15 @@ public class ProdutosMabs  implements java.io.Serializable {
         this.validadeMabs = validadeMabs;
     }
 
+@Column(name="valorunitario_mabs", nullable=false, precision=5)
+    public Double getValorUnitarioMabs() {
+        return this.valorunitarioMabs;
+    }
 
-
+    public void setValorUnitarioMabs(Double valorunitarioMabs) {
+        this.valorunitarioMabs = valorunitarioMabs;
+    }
+    
 
 }
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package view;
-import view.FornecedorControle;
+import controle.FornecedorControle;
 import bean.FornecedorMabs;
 import dao.FornecedorDAO;
 import java.util.List;

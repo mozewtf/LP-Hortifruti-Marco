@@ -7,7 +7,7 @@ package query;
 
 import dao.FornecedorDAO;
 import java.util.List;
-import view.FornecedorControle;
+import controle.FornecedorControle;
 
 /**
  *

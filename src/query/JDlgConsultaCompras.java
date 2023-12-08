@@ -5,35 +5,36 @@
  */
 package query;
 
-import dao.ClientesDAO;
+import bean.ComprasMabs;
+import controle.ComprasControle;
+import dao.ComprasDAO;
 import java.util.List;
 import tools.Util;
-import controle.ClientesControle;
+
 
 /**
  *
- * @author MARCO
+ * @author marco
  */
-public class JDlgConsultasClientes extends javax.swing.JDialog {
-//classe
-    ClientesDAO clientesDAO;
-    ClientesControle clientesControle;
-    
+public class JDlgConsultaCompras extends javax.swing.JDialog {
+
+    ComprasDAO comprasDAO;
+    ComprasControle comprasControle;
+    ComprasMabs comprasMabs;
+
     /**
-     * Creates new form JDlgConsultasClientes
+     * Creates new form JDlgConsultaVendas
      */
-    public JDlgConsultasClientes(java.awt.Frame parent, boolean modal) {
-        //construtor
+    public JDlgConsultaCompras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
-        setTitle("Consultar clientas");
-        setLocationRelativeTo(null);
-        clientesDAO = new ClientesDAO();
-        List lista = clientesDAO.listAll();
-        clientesControle = new ClientesControle();
-        clientesControle.setList(lista);
-        jTable1.setModel(clientesControle);
+        setTitle("Consulta Comprassi");
+        setLocationRelativeTo(null);  
+        comprasDAO = new ComprasDAO();
+        List lista = comprasDAO.listAll();
+        comprasControle = new ComprasControle();
+        comprasControle.setList(lista);
+        jTable1.setModel(comprasControle);
     }
 
     /**
@@ -49,12 +50,10 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTxtNome = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jBtnConsultar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTxtSexo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtTotal = new javax.swing.JTextField();
+        jFmtQuantidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,11 +70,9 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("nome");
-
-        jLabel2.setText("sexo");
+        jLabel1.setText("Quantidade");
 
         jBtnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnConsultar.setText("Consultar");
@@ -85,11 +82,13 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("Para que se pesquisa o sexo digite assim:");
+        jLabel2.setText("Total");
 
-        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel4.setText("0 para masculino e 1 para feminino");
+        jFmtQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFmtQuantidadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,16 +97,17 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTxtSexo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnConsultar)
+                    .addComponent(jLabel1)
+                    .addComponent(jFmtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnConsultar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -119,14 +119,10 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnConsultar)
-                    .addComponent(jTxtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFmtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,34 +137,37 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-        if (jTxtNome.getText().equals("") && jTxtSexo.getText().equals("")) {
-            List lista = clientesDAO.listAll();
-            clientesControle.setList(lista);
+         if (jFmtQuantidade.getText().equals("") && jTxtTotal.getText().equals("")) {
+            List lista = comprasDAO.listAll();
+            comprasControle.setList(lista);
         } else {
-            if (!jTxtNome.getText().equals("") && !jTxtSexo.getText().equals("")) {
-                List lista = clientesDAO.listNomeSexo(jTxtNome.getText(), Util.strInt(jTxtSexo.getText()));
-                clientesControle.setList(lista);
+            if (!jFmtQuantidade.getText().equals("") && !jTxtTotal.getText().equals("")) {
+                List lista = comprasDAO.listQuantidadeTotal(jFmtQuantidade.getText(), Util.strDouble(jTxtTotal.getText()));
+                comprasControle.setList(lista);
             } else {
-                if (!jTxtNome.getText().equals("")) {
-                    List lista = clientesDAO.listNome(jTxtNome.getText());
-                    clientesControle.setList(lista);
+                if (!jFmtQuantidade.getText().equals("")) {
+                    List lista = comprasDAO.listQuantidade(jFmtQuantidade.getText());
+                    comprasControle.setList(lista);
                 } else {
-                    if (!jTxtSexo.getText().equals("")) {
-                        List lista = clientesDAO.listSexo(Util.strInt(jTxtSexo.getText()));
-                        clientesControle.setList(lista);
+                    if (!jTxtTotal.getText().equals("")) {
+                        List lista = comprasDAO.listTotal(Util.strDouble(jTxtTotal.getText()));
+                        comprasControle.setList(lista);
                     }
                 }
             }
         }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
+
+    private void jFmtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFmtQuantidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,23 +183,32 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultasClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaCompras.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultasClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaCompras.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultasClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaCompras.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgConsultasClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgConsultaCompras.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgConsultasClientes dialog = new JDlgConsultasClientes(new javax.swing.JFrame(), true);
+                JDlgConsultaCompras dialog = new JDlgConsultaCompras(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -214,14 +222,12 @@ public class JDlgConsultasClientes extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
+    private javax.swing.JFormattedTextField jFmtQuantidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtNome;
-    private javax.swing.JTextField jTxtSexo;
+    private javax.swing.JTextField jTxtTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,26 +29,31 @@ public class ComprasMabs  implements java.io.Serializable {
      private ProdutosMabs produtosMabs;
      private String quantidadeMabs;
      private Double totalMabs;
+     private Double valorunitariomabs;
+     private ClienteMabs clienteMabs;
   
 
     public ComprasMabs() {
     }
 
 	
-    public ComprasMabs(int idComprasMabs, FornecedorMabs fornecedorMabs, ProdutosMabs produtosMabs, String quantidadeMabs, Double totalMabs) {
+    public ComprasMabs(int idComprasMabs, FornecedorMabs fornecedorMabs, ProdutosMabs produtosMabs, String quantidadeMabs, Double totalMabs, Double valorunitarioMabs, ClienteMabs clienteMabs) {
         this.idComprasMabs = idComprasMabs;
         this.fornecedorMabs = fornecedorMabs;
         this.produtosMabs = produtosMabs;
         this.quantidadeMabs = quantidadeMabs;
         this.totalMabs = totalMabs;
+        this.valorunitariomabs = valorunitarioMabs;
+        this.clienteMabs = clienteMabs;
     }
-    public ComprasMabs(int idComprasMabs, FornecedorMabs fornecedorMabs, ProdutosMabs produtosMabs, String quantidadeMabs, Double totalMabs, Set comprasProdutoMabses) {
+    public ComprasMabs(int idComprasMabs, FornecedorMabs fornecedorMabs, ProdutosMabs produtosMabs, String quantidadeMabs, Double totalMabs, Double valorunitarioMabs ,Set comprasProdutoMabses, ClienteMabs clienteMabs) {
        this.idComprasMabs = idComprasMabs;
        this.fornecedorMabs = fornecedorMabs;
        this.produtosMabs = produtosMabs;
        this.quantidadeMabs = quantidadeMabs;
        this.totalMabs = totalMabs;
-      
+       this.valorunitariomabs = valorunitarioMabs;
+       this.clienteMabs = clienteMabs;
     }
    
      @Id 
@@ -103,6 +108,25 @@ public class ComprasMabs  implements java.io.Serializable {
         this.totalMabs = totalMabs;
     }
 
+ 
+    @Column(name="valorunitario_mabs", nullable=false, precision=5)
+    public Double getValorunitarioMabs() {
+        return this.valorunitariomabs;
+    }
+    
+    public void setValorunitarioMabs(Double valorunitarioMabs) {
+        this.valorunitariomabs = valorunitarioMabs;
+    }
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="fkcliente_mabs", nullable=false)
+    public ClienteMabs getClienteMabs() {
+        return this.clienteMabs;
+    }
+    
+    public void setClienteMabs(ClienteMabs clienteMabs) {
+        this.clienteMabs = clienteMabs;
+    }
 
 
 

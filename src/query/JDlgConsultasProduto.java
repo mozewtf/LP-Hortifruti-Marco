@@ -5,7 +5,7 @@
  */
 package query;
 
-import view.ProdutoControle;
+import controle.ProdutoControle;
 import java.util.List;
 import tools.Util;
 import dao.ProdutosDAO;

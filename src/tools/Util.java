@@ -28,9 +28,7 @@ public class Util {
         
         public static void limparCampos(JComponent... vetComp) {
             for (JComponent componente : vetComp) {
-                if (componente instanceof JTextField) {
-//                    JTextField objeto = (JTextField) componente;
-//                    objeto.setText("");
+                if (componente instanceof JTextField) {                  
                 ((JTextField) componente).setText(""); 
                 } else if (componente instanceof JComboBox){
                 ((JComboBox)componente).setSelectedIndex(-1);
@@ -51,7 +49,6 @@ public class Util {
     }
 
     public static boolean perguntar(String cadeia) {
-       //JOptionPane.showConfirmDialog(null, cadeia, "Perguntar", JOptionPane.YES_NO_OPTION);
        int resp =  JOptionPane.showConfirmDialog(null, "Deseja excluir o registro",
        "confirmar", JOptionPane.YES_NO_OPTION);
        if (resp == JOptionPane.YES_OPTION){
@@ -71,12 +68,21 @@ public class Util {
     public static String doubleStr(double num){
      return Double.toString(num);
     }
-    public static Date strDate(String cad)throws ParseException{
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    return dateFormat.parse(cad);
+   public static Date strDate(String cad) throws ParseException {
+        // confere se a string está vazia ou contém apenas espaços nao preenchidos
+        if (cad == null || cad.trim().isEmpty()) {
+            return null; // outra lógica de tratamento caso precise
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.parse(cad.trim());
     }
-    public static String dateStr(Date data){
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    return dateFormat.format(data);
+
+    public static String dateStr(Date data) {
+        if (data == null) {
+            return "não tem data preenchidda";
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(data);
     }
 }

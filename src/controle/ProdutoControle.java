@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controle;
 
-import bean.FornecedorMabs;
+import bean.ProdutosMabs;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,7 +13,8 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author MARCO
  */
-public class FornecedorControle extends AbstractTableModel{
+
+ public class ProdutoControle  extends AbstractTableModel{
     
     List lista;
     
@@ -21,8 +22,8 @@ public class FornecedorControle extends AbstractTableModel{
     this.lista = lista;
     this.fireTableDataChanged();
     };
-    public FornecedorMabs getBean(int row){
-    return (FornecedorMabs)lista.get(row);
+    public ProdutosMabs getBean(int row){
+    return (ProdutosMabs)lista.get(row);
     }
     
     @Override
@@ -38,18 +39,18 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      FornecedorMabs fornecedorMabs = (FornecedorMabs) lista.get(rowIndex);
+      ProdutosMabs usuariosMabs = (ProdutosMabs) lista.get(rowIndex);
         if (columnIndex == 0){
-        return fornecedorMabs.getIdFornecedorMabs();
+        return usuariosMabs.getIdProdutosMabs();
         }
         if (columnIndex == 1){
-        return fornecedorMabs.getTelefoneMabs();
+        return usuariosMabs.getTipoMabs();
         }
         if (columnIndex == 2){
-        return fornecedorMabs.getSexoMabs();
+        return usuariosMabs.getPesoMabs();
         }
         if (columnIndex == 3){
-        return fornecedorMabs.getNacionalidadeMabs();
+        return usuariosMabs.getConservantesMabs();
         }
       return "";
     }
@@ -60,15 +61,16 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "Telefone";
+        return "Tipo";
         }
         if (column == 2){
-        return "Sexo";
+        return "Peso";
         }
         if (column == 3){
-        return "Nacionalidade";
+        return "Conservante";
         }
                
         return "";
     };
+    
 }

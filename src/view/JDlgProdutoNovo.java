@@ -5,6 +5,7 @@
  */
 package view;
 
+import controle.ProdutoControle;
 import bean.ProdutosMabs;
 import dao.ProdutosDAO;
 import java.util.List;
