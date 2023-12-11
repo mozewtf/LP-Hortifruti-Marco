@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author MARCO
+ * @author carlo
  */
 public abstract class DAO_Abstract {
     Session session; 

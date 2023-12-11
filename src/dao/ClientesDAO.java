@@ -5,16 +5,15 @@
  */
 package dao;
 
-import bean.ClienteMabs;
+import bean.ClientesCwmo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
-
 /**
  *
- * @author MARCO
+ * @author carlo
  */
 public class ClientesDAO extends DAO_Abstract  {
 
@@ -50,7 +49,7 @@ public class ClientesDAO extends DAO_Abstract  {
     @Override
     public Object list(int id) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClienteMabs.class);
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
         criteria.add(Restrictions.eq("id", id));
         List lista = criteria.list();
         session.getTransaction().commit();
@@ -60,34 +59,33 @@ public class ClientesDAO extends DAO_Abstract  {
     @Override
     public List listAll() {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClienteMabs.class);
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
         List lista = criteria.list();
         session.getTransaction().commit();
         return(ArrayList) lista;
     }
-    
-     public List listNome(String nome){
+    public List listInteresses(String interesses){
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClienteMabs.class);
-        criteria.add(Restrictions.like("nomeMabs", "%"+  nome +"%"));
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.like("interessesCwmo", "%"+  interesses +"%"));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
 //            jTxtId.setText(Util.intStr(clientesCwmo.getIdClienteCwmo()));
-    public List listSexo(int sexo){
+    public List listEC(int ec){
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClienteMabs.class);
-        criteria.add(Restrictions.eq("sexoMabs", sexo));
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.eq("clientesCwmo", ec));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;
     }
-        public List listNomeSexo(String nome, int sexo) {
+        public List listInteressesEC(String interesses, int ec) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(ClienteMabs.class);
-        criteria.add(Restrictions.like("nomeMabs", "%"+  nome +"%"));
-        criteria.add(Restrictions.eq("sexoMabs",  sexo));
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.like("interessesCwmo", "%"+  interesses +"%"));
+        criteria.add(Restrictions.eq("clientesCwmo",  ec));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

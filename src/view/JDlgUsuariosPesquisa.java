@@ -5,24 +5,21 @@
  */
 package view;
 
-import controle.UsuariosControle;
-import bean.UsuariosMabs;
+import controles.UsuariosControle;
+import bean.UsuariosCwmo;
 import dao.UsuariosDAO;
 import java.util.List;
 
-
 /**
  *
- * @author MARCO
+ * @author carlo
  */
 public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
-    private JDlgUsuarios jDlgUsuarios;
-     UsuariosControle usuariosControle;
-    
-    /**
-     * Creates new form JDlgUsuariosNovo
+  private JDlgUsuarios jDlgUsuarios;
+  private UsuariosControle usuariosControle;
+  /**
+     * Creates new form JDlgUsuariosPesquisa
      */
-    
     public JDlgUsuariosPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -36,7 +33,6 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
     }
         public void setTelaAnterior(JDlgUsuarios jDlgUsuarios){
     this.jDlgUsuarios = jDlgUsuarios;};
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +82,7 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,7 +97,8 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,11 +106,11 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-        int rowSel = jTable1.getSelectedRow();
-        UsuariosMabs usuariosMabs = usuariosControle.getBean(rowSel);
-        jDlgUsuarios.beanView(usuariosMabs);
+        int rowSel = jTable1.getSelectedRow();       
+        UsuariosCwmo usuariosCwmo = usuariosControle.getBean(rowSel);
+        jDlgUsuarios.beanView(usuariosCwmo);
         setVisible(false);
-
+        
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -145,7 +142,6 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JDlgUsuariosPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
