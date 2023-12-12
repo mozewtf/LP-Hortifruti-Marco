@@ -40,11 +40,11 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="test"/>
-  <table-filter match-name="clientes_cwmo"/>
-  <table-filter match-name="vendas_produto_cwmo"/>
-  <table-filter match-name="usuarios_cwmo"/>
-  <table-filter match-name="vendedor_cwmo"/>
-  <table-filter match-name="vendas_cwmo"/>
-  <table-filter match-name="guitarra_cwmo"/>
+  <schema-selection match-catalog="horifrutibutarellilp"/>
+  <table-filter match-name="fornecedor_mabs"/>
+  <table-filter match-name="compras_produto_mabs"/>
+  <table-filter match-name="usuarios_mabs"/>
+  <table-filter match-name="compras_mabs"/>
+  <table-filter match-name="cliente_mabs"/>
+  <table-filter match-name="produtos_mabs"/>
 </hibernate-reverse-engineering>
