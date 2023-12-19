@@ -46,7 +46,7 @@ return 4;
         return clienteMabs.getUsuariosMabs().getIdUsuariosMabs();        
         }
         if (columnIndex == 2){
-        return clienteMabs.getTelefoneMabs();
+        return clienteMabs.getSexoMabs();
         }
         if (columnIndex == 3){
         return clienteMabs.getEmailMabs();
@@ -64,10 +64,10 @@ return 4;
         return "FK usuario";
         }
         if (column == 2){
-        return "telefone";
+        return "sexo";
         }
         if (column == 3){
-        return "estado";
+        return "email";
         }
                
         return "";

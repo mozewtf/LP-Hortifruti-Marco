@@ -17,13 +17,14 @@ import tools.Util;
  */
 public class JDlgProdutoNovo extends javax.swing.JDialog {
     /**
-     * Creates new form JDlgGuitarra
+     * Creates new 
      */
     
     JDlgProdutoNovoIA jDlgProdutoIA;
     ProdutosMabs produtosMabs;
     ProdutosDAO produtosDAO;
     ProdutoControle produtoControle;
+    JDlgProdutoNovoIA jDlgProdutoNovoIA;
     public JDlgProdutoNovo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -124,9 +125,14 @@ public class JDlgProdutoNovo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-       jDlgProdutoIA.setTitle("inclusão");
-        jDlgProdutoIA.setVisible(true);
-           
+      jDlgProdutoNovoIA.setTitle("Inclusão");
+        jDlgProdutoNovoIA.setVisible(true);
+        
+        List lista= produtosDAO.listAll();
+       produtoControle.setList(lista);
+       jTable1.setModel(produtoControle);
+       
+       Util.limparCampos();
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

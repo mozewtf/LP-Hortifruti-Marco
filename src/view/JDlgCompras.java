@@ -379,7 +379,7 @@ public class JDlgCompras extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarVpActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-      Util.habilitar(false, jBtnExcluir, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+
 
         if (comprasMabs != null) {
             

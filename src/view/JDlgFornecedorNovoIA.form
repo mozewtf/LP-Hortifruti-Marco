@@ -56,11 +56,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jTxtIdUsuario" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="jTxtIdUsuario" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -122,10 +119,10 @@
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTxtCidade" min="-2" pref="125" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTxtCidade" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="349" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -170,24 +167,24 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTxtRua" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTxtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jTxtNumeroHome" pref="27" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTxtRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTxtNumeroHome" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTxtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTxtCidade" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTxtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTxtNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

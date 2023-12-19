@@ -99,10 +99,10 @@ public class JDlgClientes extends javax.swing.JDialog {
     jTxtNome.setText(clienteMabs.getNomeMabs());
     jFmtTelefone.setText(clienteMabs.getTelefoneMabs());
     jFmtRg.setText(clienteMabs.getRgMabs());
-    if (clienteMabs.getSexoMabs()== "M"){
+    if (clienteMabs.getSexoMabs() == "M"){
     jCboSexo.setSelectedIndex(0);
     }else{
-    jCboSexo.setSelectedIndex(1);};
+    jCboSexo.setSelectedIndex(1);} //perguntar pq nao ta alterando o sexo
     jTxtNacionalidade.setText(clienteMabs.getNacionalidadeMabs());
     jTxtEstado.setText(clienteMabs.getEstadoMabs());
     jTxtEmail.setText(clienteMabs.getEmailMabs());
@@ -482,6 +482,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         Util.habilitar(false, jFmtDataNasce,jFmtCPF,jTxtRua,jTxtComplemento, jTxtIdUsuario , jTxtIdCliente, jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa, jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jBtnExcluir, jBtnConfirmar, jBtnCancelar, jTxtEstado);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.limparCampos(jFmtDataNasce,jFmtCPF,jTxtRua, jTxtComplemento, jTxtIdUsuario, jTxtIdCliente, jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa, jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jTxtEstado);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -513,7 +514,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
 
         if (Util.perguntar("deseja excluir o registro?")== true) {
-        Util.habilitar(false, jFmtDataNasce,jFmtCPF ,jTxtRua,jTxtIdUsuario ,jTxtIdCliente, jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa,jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jTxtEstado, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(false, jFmtDataNasce,jFmtCPF ,jTxtRua,jTxtIdUsuario ,jTxtIdCliente, jTxtComplemento ,jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa,jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jTxtEstado, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         clienteMabs = viewBean();
         clientesDAO.delete(clienteMabs);
@@ -521,7 +522,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         } else {
             Util.mensagem("Exclusão cancelada");
         }
-        Util.limparCampos(jFmtCPF ,jFmtDataNasce,jTxtRua,jTxtIdUsuario ,jTxtIdCliente, jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa,
+        Util.limparCampos(jFmtCPF ,jFmtDataNasce,jTxtRua,jTxtIdUsuario ,jTxtIdCliente,jTxtComplemento , jTxtEmail, jTxtNome, jTxtCidade, jTxtNome, jTxtNumerocasa,
                 jTxtNacionalidade, jFmtCep, jFmtTelefone, jFmtRg, jCboSexo, jTxtEstado, jBtnCancelar);
 
                                           

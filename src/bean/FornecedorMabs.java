@@ -122,7 +122,7 @@ public class FornecedorMabs  implements java.io.Serializable {
     }
 
     
-    @Column(name="estado_mabs", nullable=false, length=3)
+    @Column(name="estado_mabs", nullable=false, length=25)
     public String getEstadoMabs() {
         return this.estadoMabs;
     }

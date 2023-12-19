@@ -6,16 +6,22 @@
 package view;
 import controle.FornecedorControle;
 import bean.FornecedorMabs;
+import bean.ProdutosMabs;
 import dao.FornecedorDAO;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.Util;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author MARCO
  */
 public class JDlgFornecedorNovo extends javax.swing.JDialog {
-
+    private MaskFormatter mascaraTelefone;
     /**
      * Creates new form JDlgFornecedorNovo
      */
@@ -130,8 +136,15 @@ public class JDlgFornecedorNovo extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        jDlgFornecedorNovoIA.setTitle("alteração");
-        jDlgFornecedorNovoIA.setVisible(true);
+        jDlgFornecedorNovoIA.setTitle("Alterando");
+          
+        int sel = jTable1.getSelectedRow();
+        fornecedorMabs = fornecedorControle.getBean(sel);
+        jDlgFornecedorNovoIA.beanView(fornecedorMabs);
+        jDlgFornecedorNovoIA.setVisible(true); 
+        
+         List lista = fornecedorDAO.listAll();
+          fornecedorControle.setList(lista);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
